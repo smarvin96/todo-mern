@@ -1,21 +1,43 @@
-const App = () => {
-  return ( <div className="App">
-    <h1>Willkommen</h1>
-    <h4>Deine Herausforderungen</h4>
+import { useState, useEffect } from "react";
 
-    <div className="todos">
+const API_BASE = "http://localhost:3001";
+
+const App = () => {
+  const [todos, setTodos] = useState([]);
+  const [popupActive, setPopupActive] = useState(false);
+  const [newTodo, setNewTodo] = useState("");
+
+  useEffect(() => {
+    GetTodos();
+
+    console.log(todos);
+  }, []);
+
+  const GetTodos = () => {
+    fetch(API_BASE + "/todos")
+      .then((res) => res.json())
+      .then((data) => setTodos(data))
+      .catch((err) => console.error("Error: ", err));
+  };
+
+  return (
+    <div className="App">
+      <h1>Willkommen</h1>
+      <h4>Deine Herausforderungen</h4>
+
+      <div className="todos">
+  {todos.map(todo => {
+    return (
       <div className="todo">
         <div className="checkbox"></div>
-        <div className="text">1h Fahrrad Fahren</div>
+        <div className="text">{todo.text}</div>
         <div className="delete-todo">x</div>
       </div>
-      <div className="todo is-complete">
-        <div className="checkbox"></div>
-        <div className="text">5kg Fleisch kaufen</div>
-        <div className="delete-todo">x</div>
-      </div>
+    );
+  })}
+</div>
     </div>
-  </div> );
-}
- 
+  );
+};
+
 export default App;
