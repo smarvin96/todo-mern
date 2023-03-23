@@ -1,1 +1,10 @@
 GET http://localhost:3001/todos
+
+
+###
+POST http://localhost:3001/todo/new
+Content-Type: application/json
+
+{
+    "text": "10km Fahrrad fahren"
+}
