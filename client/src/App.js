@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const API_BASE = "http://localhost:3001";
+const api_base = "http://localhost:3001";
 
 const App = () => {
   const [todos, setTodos] = useState([]);
@@ -9,12 +9,10 @@ const App = () => {
 
   useEffect(() => {
     GetTodos();
-
-    console.log(todos);
   }, []);
 
   const GetTodos = () => {
-    fetch(API_BASE + "/todos")
+    fetch(api_base + "/todos")
       .then((res) => res.json())
       .then((data) => setTodos(data))
       .catch((err) => console.error("Error: ", err));
@@ -26,16 +24,17 @@ const App = () => {
       <h4>Deine Herausforderungen</h4>
 
       <div className="todos">
-  {todos.map(todo => {
-    return (
-      <div className="todo">
-        <div className="checkbox"></div>
-        <div className="text">{todo.text}</div>
-        <div className="delete-todo">x</div>
+        {todos.map((todo) => (
+          <div
+            className={"todo " + (todo.complete ? "is-complete" : "")}
+            key={todo._id}
+          >
+            <div className="checkbox"></div>
+            <div className="text">{todo.text}</div>
+            <div className="delete-todo">x</div>
+          </div>
+        ))}
       </div>
-    );
-  })}
-</div>
     </div>
   );
 };
