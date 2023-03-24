@@ -6,16 +6,16 @@ POST http://localhost:3001/todo/new
 Content-Type: application/json
 
 {
-    "text": "3 Pizzen futtern"
+    "text": "Kniebeugen 3x10"
 }
 
 
 ###
 
-DELETE http://localhost:3001/todo/delete/641c5c39773352867d52301a
+DELETE http://localhost:3001/todo/delete/641c7a62ee0cb9a05b4954fc
 
 
 
 ###
 
-PUT http://localhost:3001/todo/complete/641c5c38773352867d523016
+PUT http://localhost:3001/todo/complete/641cbd80968db95534f379f0
